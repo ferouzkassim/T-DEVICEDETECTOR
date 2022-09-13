@@ -1,14 +1,15 @@
 import fastbootpy
 from fastbootpy import *
-dev = fastbootpy.FastbootDevice
+from fastbootpy import FastbootDevice, FastbootManager
+from ppadb.command import serial
 
-fastboot_devices = FastbootManager.devices()
 
-def detct() :
+def main() :
     fastboot_devices = FastbootManager.devices()
+    #serial = fastboot_devices[0]
+    device = FastbootDevice.connect(serial)
+    result = device.getvar("all")
+    print("result:", result)
 
 
-def getVar():
-        dev.getvar(fastboot_devices,"all")
-getVar
-
+main()
